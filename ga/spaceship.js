@@ -44,9 +44,9 @@ class SpaceShip{
     const action = this.think()
     this.handleAction(action)
     
-    this.fitness -= this._calcNormDist(this.body.position, this.target.position)
-    this.fitness -= 1
-  }
+    this.fitness -= this._calcNormDist(this.body.position, this.target.position)/989 * 1.4
+
+    }
   
   think(){
     // preparing input
@@ -119,11 +119,12 @@ class SpaceShip{
   }
     
   landed(){
-    this.fitness += 100
+    this.fitness += 1000
     this.status = STATUS_LANDED
     Composite.remove(world, this.body)
   }
   crashed(){
+    this.fitness -= 50
     this.status = STATUS_CRASHED
     Composite.remove(world, this.body)
   }
